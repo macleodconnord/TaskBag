@@ -1,0 +1,601 @@
+{
+  "_comment": "Hand-written recording of ClickUp API v2/v3 responses (shapes per developer.clickup.com), keyed by 'GET <version><path>?<query>'. Used by the importer tests through FixtureClickUpClient; never sent to the real API.",
+  "GET v2/team": {
+    "teams": [
+      {
+        "id": "9011000001",
+        "name": "Acme (fixture)",
+        "color": "#7b68ee",
+        "avatar": null,
+        "members": [
+          { "user": { "id": 81000003, "username": "Olivia Owner", "email": "owner@example.com", "color": "#40bc86", "profilePicture": null, "initials": "OO", "role": 1 } },
+          { "user": { "id": 81000001, "username": "Maria Member", "email": "Maria@Example.com", "color": "#d60800", "profilePicture": null, "initials": "MM", "role": 3 } },
+          { "user": { "id": 81000002, "username": "Casey Contractor", "email": "casey.contractor@fixture.invalid", "color": "#ff7800", "profilePicture": null, "initials": "CC", "role": 4 } }
+        ]
+      }
+    ]
+  },
+  "GET v2/group?team_id=9011000001": {
+    "groups": [
+      {
+        "id": "C9F1A2B3-0000-4000-8000-000000000001",
+        "team_id": "9011000001",
+        "userid": 81000003,
+        "name": "Fixture Engineers",
+        "handle": "fixture-engineers",
+        "date_created": "1735600000000",
+        "initials": "FE",
+        "members": [
+          { "id": 81000001, "username": "Maria Member", "email": "Maria@Example.com", "color": "#d60800", "initials": "MM", "profilePicture": null }
+        ],
+        "avatar": { "attachment_id": null, "color": null, "source": null, "icon": null }
+      }
+    ]
+  },
+  "GET v2/team/9011000001/space?archived=false": {
+    "spaces": [
+      {
+        "id": "90110000101",
+        "name": "Fixture Engineering",
+        "color": "#4169E1",
+        "private": false,
+        "avatar": null,
+        "admin_can_manage": true,
+        "statuses": [
+          { "id": "p90110000101_aaa1", "status": "to do", "type": "open", "orderindex": 0, "color": "#d3d3d3" },
+          { "id": "p90110000101_aaa2", "status": "in progress", "type": "custom", "orderindex": 1, "color": "#4194f6" },
+          { "id": "p90110000101_aaa3", "status": "review", "type": "custom", "orderindex": 2, "color": "#a875ff" },
+          { "id": "p90110000101_aaa4", "status": "complete", "type": "closed", "orderindex": 3, "color": "#6bc950" }
+        ],
+        "multiple_assignees": true,
+        "features": { "due_dates": { "enabled": true, "start_date": true }, "time_tracking": { "enabled": true }, "tags": { "enabled": true }, "time_estimates": { "enabled": true }, "checklists": { "enabled": true }, "custom_fields": { "enabled": true } },
+        "archived": false
+      }
+    ]
+  },
+  "GET v2/space/90110000101/folder?archived=false": {
+    "folders": [
+      {
+        "id": "901100001001",
+        "name": "Fixture Projects",
+        "orderindex": 0,
+        "override_statuses": false,
+        "hidden": false,
+        "space": { "id": "90110000101", "name": "Fixture Engineering" },
+        "task_count": "4",
+        "archived": false,
+        "statuses": [],
+        "lists": [
+          {
+            "id": "901100002001",
+            "name": "Fixture Sprint 1",
+            "orderindex": 0,
+            "content": "Sprint **one** goals",
+            "status": null,
+            "priority": null,
+            "assignee": null,
+            "task_count": 4,
+            "due_date": null,
+            "start_date": null,
+            "space": { "id": "90110000101", "name": "Fixture Engineering", "access": true },
+            "archived": false,
+            "override_statuses": false,
+            "statuses": [],
+            "permission_level": "create"
+          }
+        ],
+        "permission_level": "create"
+      }
+    ]
+  },
+  "GET v2/space/90110000101/list?archived=false": {
+    "lists": [
+      {
+        "id": "901100002002",
+        "name": "Fixture Bugs",
+        "orderindex": 1,
+        "content": "",
+        "task_count": 1,
+        "folder": { "id": "901100001999", "name": "hidden", "hidden": true, "access": true },
+        "space": { "id": "90110000101", "name": "Fixture Engineering", "access": true },
+        "archived": false,
+        "override_statuses": true,
+        "private": true,
+        "statuses": [
+          { "id": "sc901100002002_t1", "status": "triage", "type": "open", "orderindex": 0, "color": "#87909e" },
+          { "id": "sc901100002002_t2", "status": "fixing", "type": "custom", "orderindex": 1, "color": "#e16b16" },
+          { "id": "sc901100002002_t3", "status": "fixed", "type": "closed", "orderindex": 2, "color": "#008844" }
+        ],
+        "permission_level": "edit"
+      },
+      {
+        "id": "901100002003",
+        "name": "Fixture Inbox",
+        "orderindex": 2,
+        "content": null,
+        "task_count": 1,
+        "folder": { "id": "901100001999", "name": "hidden", "hidden": true, "access": true },
+        "space": { "id": "90110000101", "name": "Fixture Engineering", "access": true },
+        "archived": false,
+        "override_statuses": false,
+        "permission_level": "create"
+      }
+    ]
+  },
+  "GET v2/list/901100002002/member": {
+    "members": [
+      { "id": 81000001, "username": "Maria Member", "email": "Maria@Example.com", "color": "#d60800", "initials": "MM", "profileInfo": {} },
+      { "id": 81000002, "username": "Casey Contractor", "email": "casey.contractor@fixture.invalid", "color": "#ff7800", "initials": "CC" }
+    ]
+  },
+  "GET v2/space/90110000101/field": {
+    "fields": [
+      {
+        "id": "f1a1b2c3-0001-4000-8000-0000000000a1",
+        "name": "Severity",
+        "type": "drop_down",
+        "type_config": {
+          "default": 0,
+          "placeholder": null,
+          "new_drop_down": true,
+          "options": [
+            { "id": "0a0b0c0d-0001-4000-8000-000000000001", "name": "High", "color": "#e50000", "orderindex": 0 },
+            { "id": "0a0b0c0d-0002-4000-8000-000000000002", "name": "Low", "color": "#2ecd6f", "orderindex": 1 }
+          ]
+        },
+        "date_created": "1735600000000",
+        "hide_from_guests": false,
+        "required": false
+      },
+      {
+        "id": "f1a1b2c3-0002-4000-8000-0000000000a2",
+        "name": "Story points",
+        "type": "number",
+        "type_config": {},
+        "date_created": "1735600000000",
+        "hide_from_guests": false,
+        "required": false
+      }
+    ]
+  },
+  "GET v2/list/901100002001/field": {
+    "fields": [
+      { "id": "f1a1b2c3-0001-4000-8000-0000000000a1", "name": "Severity", "type": "drop_down", "type_config": { "options": [ { "id": "0a0b0c0d-0001-4000-8000-000000000001", "name": "High", "color": "#e50000", "orderindex": 0 }, { "id": "0a0b0c0d-0002-4000-8000-000000000002", "name": "Low", "color": "#2ecd6f", "orderindex": 1 } ] }, "hide_from_guests": false },
+      { "id": "f1a1b2c3-0002-4000-8000-0000000000a2", "name": "Story points", "type": "number", "type_config": {}, "hide_from_guests": false },
+      { "id": "f1a1b2c3-0003-4000-8000-0000000000a3", "name": "Ship date", "type": "date", "type_config": {}, "hide_from_guests": false },
+      { "id": "f1a1b2c3-0004-4000-8000-0000000000a4", "name": "Reviewed", "type": "checkbox", "type_config": {}, "hide_from_guests": false },
+      { "id": "f1a1b2c3-0005-4000-8000-0000000000a5", "name": "Areas", "type": "labels", "type_config": { "options": [ { "id": "1b2c3d4e-0001-4000-8000-000000000001", "label": "UX", "color": "#7c4dff" }, { "id": "1b2c3d4e-0002-4000-8000-000000000002", "label": "API", "color": "#04a9f4" } ] }, "hide_from_guests": false },
+      { "id": "f1a1b2c3-0006-4000-8000-0000000000a6", "name": "Reviewer", "type": "users", "type_config": { "single_user": true, "include_groups": false }, "hide_from_guests": true },
+      { "id": "f1a1b2c3-0007-4000-8000-0000000000a7", "name": "Related bug", "type": "tasks", "type_config": {}, "hide_from_guests": false },
+      { "id": "f1a1b2c3-0008-4000-8000-0000000000a8", "name": "Effort score", "type": "formula", "type_config": { "formula": "field(\"Story points\") * 2" }, "hide_from_guests": false }
+    ]
+  },
+  "GET v2/list/901100002002/field": {
+    "fields": [
+      { "id": "f1a1b2c3-0001-4000-8000-0000000000a1", "name": "Severity", "type": "drop_down", "type_config": { "options": [ { "id": "0a0b0c0d-0001-4000-8000-000000000001", "name": "High", "color": "#e50000", "orderindex": 0 }, { "id": "0a0b0c0d-0002-4000-8000-000000000002", "name": "Low", "color": "#2ecd6f", "orderindex": 1 } ] } },
+      { "id": "f1a1b2c3-0002-4000-8000-0000000000a2", "name": "Story points", "type": "number", "type_config": {} }
+    ]
+  },
+  "GET v2/list/901100002001/task?archived=false&page=0": {
+    "tasks": [
+      {
+        "id": "86fx00002",
+        "custom_id": null,
+        "name": "Login form validation",
+        "text_content": "Validate email format",
+        "description": "Validate email format",
+        "markdown_description": "Validate email format",
+        "status": { "status": "to do", "color": "#d3d3d3", "type": "open", "orderindex": 0 },
+        "orderindex": "2.00000000000000000000000000000000",
+        "date_created": "1735610000000",
+        "date_updated": "1735700000000",
+        "date_closed": null,
+        "date_done": null,
+        "archived": false,
+        "creator": { "id": 81000001, "username": "Maria Member", "color": "#d60800", "email": "Maria@Example.com", "profilePicture": null },
+        "assignees": [ { "id": 81000002, "username": "Casey Contractor", "color": "#ff7800", "initials": "CC", "email": "casey.contractor@fixture.invalid", "profilePicture": null } ],
+        "watchers": [],
+        "checklists": [],
+        "tags": [],
+        "parent": "86fx00001",
+        "priority": null,
+        "due_date": null,
+        "start_date": null,
+        "points": null,
+        "time_estimate": null,
+        "custom_fields": [
+          { "id": "f1a1b2c3-0002-4000-8000-0000000000a2", "name": "Story points", "type": "number", "type_config": {}, "hide_from_guests": false, "value": 2 }
+        ],
+        "dependencies": [],
+        "linked_tasks": [],
+        "team_id": "9011000001",
+        "url": "https://app.clickup.com/t/86fx00002",
+        "sharing": { "public": false },
+        "permission_level": "create",
+        "list": { "id": "901100002001", "name": "Fixture Sprint 1", "access": true },
+        "project": { "id": "901100001001", "name": "Fixture Projects", "hidden": false, "access": true },
+        "folder": { "id": "901100001001", "name": "Fixture Projects", "hidden": false, "access": true },
+        "space": { "id": "90110000101" }
+      },
+      {
+        "id": "86fx00001",
+        "custom_id": null,
+        "name": "Design login page",
+        "text_content": "Goals\nBuild the login page with SSO.",
+        "description": "Goals\nBuild the login page with SSO.",
+        "markdown_description": "## Goals\n\nBuild the **login** page with *SSO*.\nSecond line.\n\n- Email field\n- SSO button\n  - Entra ID\n\n1. Draft\n2. Review\n\nSee [the spec](https://example.com/spec) and `npm run dev`.",
+        "status": { "status": "in progress", "color": "#4194f6", "type": "custom", "orderindex": 1 },
+        "orderindex": "1.00000000000000000000000000000000",
+        "date_created": "1735600000000",
+        "date_updated": "1735800000000",
+        "date_closed": null,
+        "date_done": null,
+        "archived": false,
+        "creator": { "id": 81000003, "username": "Olivia Owner", "color": "#40bc86", "email": "owner@example.com", "profilePicture": null },
+        "assignees": [ { "id": 81000001, "username": "Maria Member", "color": "#d60800", "initials": "MM", "email": "Maria@Example.com", "profilePicture": null } ],
+        "group_assignees": [],
+        "watchers": [
+          { "id": 81000001, "username": "Maria Member", "color": "#d60800", "initials": "MM", "email": "Maria@Example.com", "profilePicture": null },
+          { "id": 81000003, "username": "Olivia Owner", "color": "#40bc86", "initials": "OO", "email": "owner@example.com", "profilePicture": null }
+        ],
+        "checklists": [
+          {
+            "id": "b8a1c2d3-0001-4000-8000-00000000c001",
+            "task_id": "86fx00001",
+            "name": "QA",
+            "date_created": "1735600000000",
+            "orderindex": 0,
+            "creator": 81000003,
+            "resolved": 1,
+            "unresolved": 2,
+            "items": [
+              { "id": "c1000001-0001-4000-8000-000000000001", "name": "Test in Chrome", "orderindex": 0, "assignee": null, "group_assignee": null, "resolved": true, "parent": null, "date_created": "1735600000000", "children": [] },
+              {
+                "id": "c1000001-0002-4000-8000-000000000002", "name": "Test on mobile", "orderindex": 1,
+                "assignee": { "id": 81000001, "username": "Maria Member", "email": "Maria@Example.com", "color": "#d60800" },
+                "group_assignee": null, "resolved": false, "parent": null, "date_created": "1735600000000",
+                "children": [
+                  { "id": "c1000001-0003-4000-8000-000000000003", "name": "iOS Safari", "orderindex": 0, "assignee": null, "resolved": false, "parent": "c1000001-0002-4000-8000-000000000002", "date_created": "1735600000000", "children": [] }
+                ]
+              }
+            ]
+          }
+        ],
+        "tags": [ { "name": "frontend", "tag_fg": "#ffffff", "tag_bg": "#7c3aed", "creator": 81000003 } ],
+        "parent": null,
+        "priority": { "color": "#ffcc00", "id": "2", "orderindex": "2", "priority": "high" },
+        "due_date": "1736000000000",
+        "due_date_time": true,
+        "start_date": "1735700000000",
+        "start_date_time": false,
+        "points": null,
+        "time_estimate": 5400000,
+        "time_spent": 3600000,
+        "custom_fields": [
+          { "id": "f1a1b2c3-0001-4000-8000-0000000000a1", "name": "Severity", "type": "drop_down", "type_config": { "options": [ { "id": "0a0b0c0d-0001-4000-8000-000000000001", "name": "High", "color": "#e50000", "orderindex": 0 }, { "id": "0a0b0c0d-0002-4000-8000-000000000002", "name": "Low", "color": "#2ecd6f", "orderindex": 1 } ] }, "hide_from_guests": false, "value": 0, "required": false },
+          { "id": "f1a1b2c3-0002-4000-8000-0000000000a2", "name": "Story points", "type": "number", "type_config": {}, "hide_from_guests": false, "value": "5", "required": false },
+          { "id": "f1a1b2c3-0003-4000-8000-0000000000a3", "name": "Ship date", "type": "date", "type_config": {}, "hide_from_guests": false, "value": "1736200000000", "required": false },
+          { "id": "f1a1b2c3-0004-4000-8000-0000000000a4", "name": "Reviewed", "type": "checkbox", "type_config": {}, "hide_from_guests": false, "value": "true", "required": false },
+          { "id": "f1a1b2c3-0005-4000-8000-0000000000a5", "name": "Areas", "type": "labels", "type_config": { "options": [ { "id": "1b2c3d4e-0001-4000-8000-000000000001", "label": "UX", "color": "#7c4dff" }, { "id": "1b2c3d4e-0002-4000-8000-000000000002", "label": "API", "color": "#04a9f4" } ] }, "hide_from_guests": false, "value": [ "1b2c3d4e-0001-4000-8000-000000000001", "1b2c3d4e-0002-4000-8000-000000000002" ], "required": false },
+          { "id": "f1a1b2c3-0006-4000-8000-0000000000a6", "name": "Reviewer", "type": "users", "type_config": { "single_user": true }, "hide_from_guests": true, "value": [ { "id": 81000001, "username": "Maria Member", "email": "Maria@Example.com", "color": "#d60800", "initials": "MM", "profilePicture": null } ], "required": false },
+          { "id": "f1a1b2c3-0007-4000-8000-0000000000a7", "name": "Related bug", "type": "tasks", "type_config": {}, "hide_from_guests": false, "value": [ { "id": "86fx00003", "name": "Fix SSO redirect bug", "status": "fixed", "color": "#008844", "deleted": false, "team_id": "9011000001" } ], "required": false },
+          { "id": "f1a1b2c3-0008-4000-8000-0000000000a8", "name": "Effort score", "type": "formula", "type_config": { "formula": "field(\"Story points\") * 2" }, "hide_from_guests": false, "value": 10, "required": false }
+        ],
+        "dependencies": [
+          { "task_id": "86fx00001", "depends_on": "86fx00004", "type": 1, "date_created": "1735650000000", "userid": "81000003", "workspace_id": "9011000001", "chain_id": null }
+        ],
+        "linked_tasks": [
+          { "task_id": "86fx00001", "link_id": "86fx00006", "date_created": "1735660000000", "userid": "81000003", "workspace_id": "9011000001" }
+        ],
+        "team_id": "9011000001",
+        "url": "https://app.clickup.com/t/86fx00001",
+        "permission_level": "create",
+        "list": { "id": "901100002001", "name": "Fixture Sprint 1", "access": true },
+        "project": { "id": "901100001001", "name": "Fixture Projects", "hidden": false, "access": true },
+        "folder": { "id": "901100001001", "name": "Fixture Projects", "hidden": false, "access": true },
+        "space": { "id": "90110000101" }
+      },
+      {
+        "id": "86fx00004",
+        "custom_id": null,
+        "name": "Register OAuth app",
+        "text_content": "",
+        "description": "",
+        "markdown_description": "",
+        "status": { "status": "complete", "color": "#6bc950", "type": "closed", "orderindex": 3 },
+        "orderindex": "3.00000000000000000000000000000000",
+        "date_created": "1735500000000",
+        "date_updated": "1735560000000",
+        "date_closed": "1735550000000",
+        "date_done": "1735550000000",
+        "archived": false,
+        "creator": { "id": 81000003, "username": "Olivia Owner", "color": "#40bc86", "email": "owner@example.com" },
+        "assignees": [],
+        "watchers": [],
+        "checklists": [],
+        "tags": [ { "name": "Frontend", "tag_fg": "#ffffff", "tag_bg": "#7c3aed" }, { "name": "auth", "tag_fg": "#ffffff", "tag_bg": "#0f766e" } ],
+        "parent": null,
+        "priority": { "color": "#f50000", "id": "1", "orderindex": "1", "priority": "urgent" },
+        "due_date": "1735540000000",
+        "due_date_time": false,
+        "start_date": null,
+        "time_estimate": null,
+        "custom_fields": [
+          { "id": "f1a1b2c3-0001-4000-8000-0000000000a1", "name": "Severity", "type": "drop_down", "type_config": { "options": [ { "id": "0a0b0c0d-0001-4000-8000-000000000001", "name": "High", "color": "#e50000", "orderindex": 0 }, { "id": "0a0b0c0d-0002-4000-8000-000000000002", "name": "Low", "color": "#2ecd6f", "orderindex": 1 } ] }, "value": "0a0b0c0d-0002-4000-8000-000000000002" }
+        ],
+        "dependencies": [
+          { "task_id": "86fx00001", "depends_on": "86fx00004", "type": 0, "date_created": "1735650000000", "userid": "81000003" }
+        ],
+        "linked_tasks": [],
+        "list": { "id": "901100002001" },
+        "folder": { "id": "901100001001" },
+        "space": { "id": "90110000101" }
+      }
+    ],
+    "last_page": true
+  },
+  "GET v2/list/901100002001/task?archived=true&page=0": {
+    "tasks": [
+      {
+        "id": "86fx00005",
+        "name": "Old prototype",
+        "text_content": "Superseded",
+        "markdown_description": "Superseded",
+        "status": { "status": "to do", "color": "#d3d3d3", "type": "open", "orderindex": 0 },
+        "orderindex": "4",
+        "date_created": "1735000000000",
+        "date_updated": "1735100000000",
+        "date_closed": null,
+        "archived": true,
+        "creator": { "id": 81000003, "username": "Olivia Owner", "email": "owner@example.com" },
+        "assignees": [],
+        "checklists": [],
+        "tags": [],
+        "parent": null,
+        "priority": null,
+        "due_date": null,
+        "start_date": null,
+        "time_estimate": null,
+        "custom_fields": [],
+        "dependencies": [],
+        "linked_tasks": [],
+        "list": { "id": "901100002001" },
+        "space": { "id": "90110000101" }
+      }
+    ],
+    "last_page": true
+  },
+  "GET v2/list/901100002002/task?archived=false&page=0": {
+    "tasks": [
+      {
+        "id": "86fx00003",
+        "name": "Fix SSO redirect bug",
+        "text_content": "Redirect loops after login.",
+        "markdown_description": "Redirect **loops** after login.",
+        "status": { "status": "fixed", "color": "#008844", "type": "closed", "orderindex": 2 },
+        "orderindex": "1",
+        "date_created": "1735400000000",
+        "date_updated": "1735450000000",
+        "date_closed": "1735440000000",
+        "date_done": "1735440000000",
+        "archived": false,
+        "creator": { "id": 81000001, "username": "Maria Member", "email": "Maria@Example.com" },
+        "assignees": [ { "id": 81000001, "username": "Maria Member", "email": "Maria@Example.com" } ],
+        "checklists": [],
+        "tags": [ { "name": "bug", "tag_fg": "#ffffff", "tag_bg": "#e11d48" } ],
+        "parent": null,
+        "priority": { "id": "3", "priority": "normal", "color": "#6fddff", "orderindex": "3" },
+        "due_date": null,
+        "start_date": null,
+        "time_estimate": 1800000,
+        "custom_fields": [
+          { "id": "f1a1b2c3-0001-4000-8000-0000000000a1", "name": "Severity", "type": "drop_down", "type_config": { "options": [ { "id": "0a0b0c0d-0001-4000-8000-000000000001", "name": "High", "color": "#e50000", "orderindex": 0 }, { "id": "0a0b0c0d-0002-4000-8000-000000000002", "name": "Low", "color": "#2ecd6f", "orderindex": 1 } ] }, "value": 0 }
+        ],
+        "dependencies": [],
+        "linked_tasks": [],
+        "list": { "id": "901100002002" },
+        "space": { "id": "90110000101" }
+      }
+    ],
+    "last_page": true
+  },
+  "GET v2/list/901100002003/task?archived=false&page=0": {
+    "tasks": [
+      {
+        "id": "86fx00006",
+        "name": "Inbox: vendor follow-up",
+        "text_content": "Call the vendor *today*\nAsk about pricing",
+        "description": "Call the vendor *today*\nAsk about pricing",
+        "status": { "status": "to do", "color": "#d3d3d3", "type": "open", "orderindex": 0 },
+        "orderindex": "1",
+        "date_created": "1735300000000",
+        "date_updated": "1735300000000",
+        "archived": false,
+        "creator": { "id": 99999999, "username": "Former Employee", "email": "former@acme.invalid" },
+        "assignees": [],
+        "checklists": [],
+        "tags": [],
+        "parent": null,
+        "priority": { "id": "4", "priority": "low", "color": "#d8d8d8", "orderindex": "4" },
+        "due_date": null,
+        "start_date": null,
+        "time_estimate": null,
+        "custom_fields": [],
+        "dependencies": [],
+        "linked_tasks": [ { "task_id": "86fx00006", "link_id": "86fx00001", "date_created": "1735660000000", "userid": "81000003" } ],
+        "list": { "id": "901100002003" },
+        "space": { "id": "90110000101" }
+      }
+    ],
+    "last_page": true
+  },
+  "GET v2/task/86fx00001": {
+    "id": "86fx00001",
+    "name": "Design login page",
+    "status": { "status": "in progress", "type": "custom" },
+    "list": { "id": "901100002001" },
+    "attachments": [
+      {
+        "id": "4a3b2c1d-aaaa-4000-8000-000000000001.txt",
+        "version": "0",
+        "date": 1735620000000,
+        "title": "spec.txt",
+        "type": 1,
+        "source": 1,
+        "extension": "txt",
+        "thumbnail_small": null,
+        "thumbnail_large": null,
+        "size": 16,
+        "url": "https://t9011000001.p.clickup-attachments.com/t9011000001/4a3b2c1d/spec.txt",
+        "user": { "id": 81000003, "username": "Olivia Owner", "email": "owner@example.com" }
+      }
+    ]
+  },
+  "GET v2/task/86fx00001/comment": {
+    "comments": [
+      {
+        "id": "90110300002",
+        "comment": [
+          { "text": "Spec notes attached " },
+          { "type": "attachment", "text": "notes.txt", "attachment": { "id": "5b4c3d2e-bbbb-4000-8000-000000000002.txt", "title": "notes.txt", "url": "https://t9011000001.p.clickup-attachments.com/t9011000001/5b4c3d2e/notes.txt" } },
+          { "text": "\n" }
+        ],
+        "comment_text": "Spec notes attached notes.txt",
+        "user": { "id": 81000001, "username": "Maria Member", "email": "Maria@Example.com", "color": "#d60800", "initials": "MM" },
+        "assignee": { "id": 81000003, "username": "Olivia Owner", "email": "owner@example.com" },
+        "assigned_by": { "id": 81000001, "username": "Maria Member" },
+        "reactions": [],
+        "date": "1735820000000",
+        "reply_count": 0
+      },
+      {
+        "id": "90110300001",
+        "comment": [
+          { "text": "Looks " },
+          { "text": "great", "attributes": { "bold": true } },
+          { "text": ", thanks " },
+          { "type": "tag", "user": { "id": 81000001, "username": "Maria Member", "email": "Maria@Example.com" } },
+          { "text": "\n" },
+          { "text": "Check accessibility", "attributes": {} },
+          { "text": "\n", "attributes": { "list": "bullet" } },
+          { "text": "Check dark mode" },
+          { "text": "\n", "attributes": { "list": "bullet" } }
+        ],
+        "comment_text": "Looks great, thanks @Maria Member\nCheck accessibility\nCheck dark mode\n",
+        "user": { "id": 81000003, "username": "Olivia Owner", "email": "owner@example.com", "color": "#40bc86", "initials": "OO" },
+        "assignee": null,
+        "reactions": [ { "reaction": "+1", "date": "1735811000000", "user": { "id": 81000001 } } ],
+        "date": "1735810000000",
+        "reply_count": "1"
+      }
+    ]
+  },
+  "GET v2/comment/90110300001/reply": {
+    "comments": [
+      {
+        "id": "90110300003",
+        "comment": [ { "text": "On it!\n" } ],
+        "comment_text": "On it!\n",
+        "user": { "id": 81000001, "username": "Maria Member", "email": "Maria@Example.com" },
+        "reactions": [],
+        "date": "1735815000000",
+        "reply_count": 0
+      }
+    ]
+  },
+  "GET v2/task/86fx00006/comment": {
+    "comments": [
+      {
+        "id": "90110300004",
+        "comment": [ { "text": "Vendor did not answer\n" } ],
+        "comment_text": "Vendor did not answer\n",
+        "user": { "id": 99999999, "username": "Former Employee", "email": "former@acme.invalid" },
+        "reactions": [],
+        "date": "1735310000000",
+        "reply_count": 0
+      }
+    ]
+  },
+  "GET v2/team/9011000001/view": {
+    "views": [
+      { "id": "3c-fx-everything-1", "name": "Everything board", "type": "board", "parent": { "id": "9011000001", "type": 7 }, "grouping": { "field": "assignee", "dir": 1 }, "sorting": { "fields": [] }, "filters": { "op": "AND", "fields": [], "search": "", "show_closed": false }, "columns": { "fields": [] }, "settings": { "show_subtasks": 1 }, "visibility": "public", "protected": false }
+    ]
+  },
+  "GET v2/space/90110000101/view": {
+    "views": [
+      {
+        "id": "3c-fx-board-1",
+        "name": "Fixture board",
+        "type": "board",
+        "parent": { "id": "90110000101", "type": 4 },
+        "grouping": { "field": "status", "dir": 1, "collapsed": [], "ignore": false },
+        "divide": { "field": null, "dir": null, "collapsed": [] },
+        "sorting": { "fields": [ { "field": "dueDate", "dir": 1, "idx": 0 } ] },
+        "filters": {
+          "op": "AND",
+          "fields": [
+            { "field": "assignee", "op": "ANY", "determinor": "", "idx": 0, "values": [ "81000001" ] },
+            { "field": "priority", "op": "ANY", "idx": 1, "values": [ "1", "2" ] },
+            { "field": "dueDate", "op": "EQ", "idx": 2, "values": [ { "op": "today" } ] }
+          ],
+          "search": "",
+          "show_closed": false
+        },
+        "columns": { "fields": [] },
+        "team_sidebar": { "assignees": [], "assigned_comments": false, "unassigned_tasks": false },
+        "settings": { "show_task_locations": false, "show_subtasks": 2, "show_subtask_parent_names": false, "show_closed_subtasks": false, "show_assignees": true, "show_images": true, "collapse_empty_columns": null, "me_comments": true, "me_subtasks": true, "me_checklists": true },
+        "date_created": "1735600000000",
+        "creator": 81000003,
+        "visibility": "public",
+        "protected": false,
+        "orderindex": 0
+      }
+    ]
+  },
+  "GET v2/list/901100002001/view": {
+    "views": [
+      {
+        "id": "3c-fx-table-1",
+        "name": "Fixture table",
+        "type": "table",
+        "parent": { "id": "901100002001", "type": 6 },
+        "grouping": { "field": "none", "dir": 1 },
+        "sorting": { "fields": [ { "field": "cf_f1a1b2c3-0002-4000-8000-0000000000a2", "dir": -1 } ] },
+        "filters": { "op": "AND", "fields": [ { "field": "cf_f1a1b2c3-0001-4000-8000-0000000000a1", "op": "ANY", "values": [ "0a0b0c0d-0001-4000-8000-000000000001" ] }, { "field": "watcher", "op": "ANY", "values": [ "81000001" ] } ], "search": "login", "show_closed": true },
+        "columns": { "fields": [ { "field": "assignee", "idx": 0, "width": 160, "hidden": false }, { "field": "dueDate", "idx": 1, "width": 120 }, { "field": "cf_f1a1b2c3-0002-4000-8000-0000000000a2", "idx": 2, "width": 90 }, { "field": "cf_f1a1b2c3-0005-4000-8000-0000000000a5", "idx": 3, "hidden": true } ] },
+        "settings": { "show_subtasks": 3 },
+        "creator": 81000001,
+        "visibility": "personal",
+        "protected": false
+      },
+      { "id": "3c-fx-doc-1", "name": "Sprint notes", "type": "doc", "parent": { "id": "901100002001", "type": 6 }, "creator": 81000001 }
+    ]
+  },
+  "GET v3/workspaces/9011000001/docs?deleted=false": {
+    "docs": [
+      { "id": "8cfx-1001", "date_created": 1735600000000, "date_updated": 1735700000000, "name": "Fixture handbook", "type": 1, "parent": { "id": "90110000101", "type": 4 }, "public": false, "workspace_id": 9011000001, "creator": 81000003, "deleted": false, "archived": false },
+      { "id": "8cfx-1002", "date_created": 1735600000000, "name": "Company wiki", "type": 1, "parent": { "id": "9011000001", "type": 12 }, "public": false, "workspace_id": 9011000001, "creator": 81000003, "deleted": false }
+    ],
+    "next_cursor": null
+  },
+  "GET v3/workspaces/9011000001/docs/8cfx-1001/pages?content_format=text/md&max_page_depth=-1": [
+    {
+      "id": "8cfx-1001-p1",
+      "doc_id": "8cfx-1001",
+      "workspace_id": 9011000001,
+      "name": "Welcome",
+      "content": "# Welcome\n\nHello **team**, read this first.",
+      "date_created": 1735600000000,
+      "creator_id": 81000003,
+      "archived": false,
+      "pages": [
+        { "id": "8cfx-1001-p2", "doc_id": "8cfx-1001", "parent_page_id": "8cfx-1001-p1", "name": "Setup", "content": "- [ ] Install the app\n- [x] Sign in", "date_created": 1735600100000, "creator_id": 81000001, "pages": [] }
+      ]
+    },
+    { "id": "8cfx-1001-p3", "doc_id": "8cfx-1001", "name": "FAQ", "content": "**Q:** Where?\n\n**A:** Here.", "date_created": 1735600200000, "creator_id": 81000003, "pages": [] }
+  ],
+  "_downloads": {
+    "https://t9011000001.p.clickup-attachments.com/t9011000001/4a3b2c1d/spec.txt": "ClickUp spec v1\n",
+    "https://t9011000001.p.clickup-attachments.com/t9011000001/5b4c3d2e/notes.txt": "notes\n"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "project-app",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.5.2",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm db:up && pnpm --parallel --filter @app/server --filter @app/web dev",
+    "db:up": "docker compose -f compose.dev.yml up -d --wait",
+    "db:down": "docker compose -f compose.dev.yml down",
+    "db:migrate": "pnpm --filter @app/server db:migrate",
+    "db:generate": "pnpm --filter @app/server db:generate",
+    "db:reset": "pnpm --filter @app/server db:reset",
+    "db:seed": "pnpm --filter @app/server db:seed",
+    "build": "pnpm --filter @app/web build && pnpm --filter @app/server build",
+    "start": "pnpm --filter @app/server start",
+    "cli": "pnpm --filter @app/server cli",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "ui:smoke": "node tools/ui-smoke.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.55.0"
+  }
+}

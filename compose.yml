@@ -1,0 +1,32 @@
+# Production stack: `docker compose up -d --build`. Put bootstrap values in .env (see .env.example).
+# The networking team's proxy terminates TLS and forwards to port 8080.
+services:
+  app:
+    build: .
+    image: project-app:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgres://app:${POSTGRES_PASSWORD:-app}@postgres:5432/app
+      DATA_DIR: /data
+      DEV_LOGIN: "false"
+    ports: ["8080:8080"]
+    volumes: [app_data:/data]
+    depends_on:
+      postgres: { condition: service_healthy }
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-app}
+      POSTGRES_DB: app
+    volumes: [pg_data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app"]
+      interval: 5s
+      retries: 20
+volumes:
+  app_data:
+  pg_data:
