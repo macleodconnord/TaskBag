@@ -70,7 +70,3 @@ export async function loadSession(req: FastifyRequest, reply: FastifyReply, toke
   req.viaBreakglass = row.s.viaBreakglass;
   req._access = new AccessContext({ id: u.id, role: u.role, isActive: u.isActive });
 }
-
-export async function revokeUserSessions(userId: string) {
-  await db.delete(sessions).where(eq(sessions.userId, userId));
-}

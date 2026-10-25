@@ -1,4 +1,4 @@
-import { and, eq, inArray, isNull } from 'drizzle-orm';
+import { and, inArray, isNull } from 'drizzle-orm';
 import { db } from '../../db/client';
 import { comments, docs, notifications, statuses, tasks, users } from '../../db/schema';
 import type { AccessContext } from '../../lib/access';
@@ -115,9 +115,4 @@ export async function renderNotifications(rows: NotificationRow[], access: Acces
     out.push({ ...base, redacted: false, actor, task, doc, headline, subject, body, link });
   }
   return out;
-}
-
-export async function loadNotification(id: string) {
-  const [n] = await db.select().from(notifications).where(eq(notifications.id, id));
-  return n ?? null;
 }

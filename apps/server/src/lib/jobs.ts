@@ -12,8 +12,6 @@ interface Job {
   run: () => Promise<unknown>;
   running: boolean;
   timer?: NodeJS.Timeout;
-  lastRunAt?: Date;
-  lastError?: string;
 }
 const jobs = new Map<string, Job>();
 let started = false;
@@ -24,24 +22,15 @@ export function registerJob(name: string, everyMs: number, run: () => Promise<un
   if (started) schedule(job);
 }
 
-/** Run a job now (if it isn't already running). */
-export async function runJobNow(name: string) {
-  const job = jobs.get(name);
-  if (job) await tick(job);
-}
-
 async function tick(job: Job) {
   if (job.running) return;
   job.running = true;
   try {
     await job.run();
-    job.lastError = undefined;
   } catch (err) {
-    job.lastError = err instanceof Error ? err.message : String(err);
     log.error({ err, job: job.name }, 'job failed');
   } finally {
     job.running = false;
-    job.lastRunAt = new Date();
   }
 }
 
@@ -62,6 +51,3 @@ export function stopJobs() {
   for (const job of jobs.values()) if (job.timer) clearInterval(job.timer);
   started = false;
 }
-
-export const jobStatus = () =>
-  [...jobs.values()].map((j) => ({ name: j.name, everyMs: j.everyMs, running: j.running, lastRunAt: j.lastRunAt, lastError: j.lastError }));

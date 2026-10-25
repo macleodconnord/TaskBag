@@ -22,7 +22,6 @@ export function bumpAcl() {
   graph = null;
   userCache.clear();
 }
-export const currentAclVersion = () => aclVersion;
 
 async function loadGraph() {
   if (graph && graph.version === aclVersion) return graph;

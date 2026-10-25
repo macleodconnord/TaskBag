@@ -1,4 +1,4 @@
-import { asc, eq, inArray } from 'drizzle-orm';
+import { asc, eq } from 'drizzle-orm';
 import type { Tx } from '../../db/client';
 import { folders, lists, spaces, statuses, statusSets } from '../../db/schema';
 import { NotFound } from '../../lib/errors';
@@ -35,11 +35,6 @@ export async function statusSetIdForList(tx: Tx, listId: string): Promise<string
 export async function statusesForList(tx: Tx, listId: string) {
   const setId = await statusSetIdForList(tx, listId);
   return tx.select().from(statuses).where(eq(statuses.statusSetId, setId)).orderBy(asc(statuses.position));
-}
-
-export async function statusesForSets(tx: Tx, setIds: string[]) {
-  if (!setIds.length) return [];
-  return tx.select().from(statuses).where(inArray(statuses.statusSetId, setIds)).orderBy(asc(statuses.position));
 }
 
 /** Breadcrumb names for a list (space › folder › list). Names only — safe for "traverse" nav. */

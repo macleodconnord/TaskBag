@@ -78,11 +78,6 @@ export async function userPrefs(userId: string, tx: Tx = db): Promise<{ matrix: 
   return { matrix, overridden };
 }
 
-export async function prefFor(userId: string, eventType: string, channel: PrefChannel): Promise<ChannelPref> {
-  const { matrix } = await userPrefs(userId);
-  return matrix[eventType]?.[channel] ?? { enabled: channel === 'in_app', digest: 'instant' };
-}
-
 export async function setUserPref(userId: string, eventType: string, channel: PrefChannel, value: ChannelPref | null) {
   const where = and(eq(notificationPreferences.userId, userId), eq(notificationPreferences.eventType, eventType), eq(notificationPreferences.channel, channel));
   if (!value) {
